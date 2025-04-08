@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Referidos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Sistema de Referidos</h1>
+        <form action="/add_referral" method="post">
+            <div class="form-group">
+                <input type="text" name="link" class="form-control" placeholder="Enlace de Referido" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Agregar Enlace</button>
+        </form>
+        
+        <h2 class="mt-4">Enlaces de Referidos</h2>
+        <ul class="list-group">
+            {% for user in referrals %}
+                <li class="list-group-item">{{ user.username }}: <a href="{{ user.referral_link }}">{{ user.referral_link }}</a></li>
+            {% endfor %}
+        </ul>
+
+        <a href="{{ url_for('logout') }}" class="btn btn-danger mt-4">Cerrar Sesión</a>
+    </div>
+</body>
+</html>
